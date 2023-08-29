@@ -4,7 +4,7 @@ import { Slug } from "./value-objects/slug";
 interface IAnswerProps {
   title: string
   content: string
-  authorId: string
+  authorId: UniqueEntityID
   slug: Slug;
 
 }
