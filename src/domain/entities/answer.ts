@@ -1,11 +1,12 @@
 import { Entity } from "../../core/entities/entity";
-import { Slug } from "./value-objects/slug";
+import { UniqueEntityID } from "../../core/entities/unique-entity-id";
 
 interface IAnswerProps {
-  title: string
-  content: string
   authorId: UniqueEntityID
-  slug: Slug;
+  questionId: UniqueEntityID
+  content: string
+  createAt: Date
+  updateAt?: Date
 
 }
 export class Answer extends Entity<IAnswerProps> {
