@@ -5,7 +5,7 @@ import { AnsewerQuestionUseCase } from './answer-question'
 
 const fakeAnswerRepository: AnsewerRepository = {
   create: async (answer: Answer) => {
-    console.log('')
+    console.log(answer.exerpt)
   },
 }
 
