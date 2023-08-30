@@ -8,7 +8,7 @@ interface IAnswerQuestionUseCase {
   content: string
 }
 
-export class AnsewerQuestionUseCase {
+export class AnswerQuestionUseCase {
   constructor(private answersRepository: AnsewerRepository) {}
 
   async execute({ instructorId, questionId, content }: IAnswerQuestionUseCase) {
