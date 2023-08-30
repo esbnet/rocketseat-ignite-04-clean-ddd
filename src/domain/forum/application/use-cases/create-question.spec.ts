@@ -1,22 +1,22 @@
-import { expect, test } from 'vitest'
-import { Question } from '../../enterprise/entities/question'
-import { QuestionsRepository } from '../repositories/question-repositories'
+import { InMemoryQuestionsRepository } from 'test/repositories/in-memory-questions-repository'
 import { CreateQuestionUseCase } from './create-question'
 
-const fakeQuestionRepository: QuestionsRepository = {
-  create: async (Question: Question) => {
-    console.log(Question)
-  },
-}
+let inMemoryQuestionsRepository: InMemoryQuestionsRepository
+let sut: CreateQuestionUseCase
 
-test('create a question', async () => {
-  const createQuestion = new CreateQuestionUseCase(fakeQuestionRepository)
-
-  const { question } = await createQuestion.execute({
-    authorId: '1',
-    title: 'Nova pergunta',
-    content: 'Conteudo da pergunta',
+describe('create a question', () => {
+  beforeAll(async () => {
+    inMemoryQuestionsRepository = new InMemoryQuestionsRepository()
+    sut = new CreateQuestionUseCase(inMemoryQuestionsRepository) // system under test
   })
 
-  expect(question.id).toBeTruthy()
+  it('should be able to create a new question', async () => {
+    const { question } = await sut.execute({
+      authorId: '1',
+      title: 'Nova pergunta',
+      content: 'Conteudo da pergunta',
+    })
+
+    expect(question.id).toBeTruthy()
+  })
 })
