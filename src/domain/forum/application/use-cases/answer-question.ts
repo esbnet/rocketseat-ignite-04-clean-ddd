@@ -1,6 +1,6 @@
-import { UniqueEntityID } from '../../core/entities/unique-entity-id'
-import { Answer } from '../entities/answer'
-import { AnsewerRepository } from '../repositories/answer-repositories'
+import { UniqueEntityID } from '@/core/entities/unique-entity-id'
+import { AnsewerRepository } from '@/domain/forum/application/repositories/answer-repositories'
+import { Answer } from '../../enterprise/entities/answer'
 
 interface IAnswerQuestionUseCase {
   instructorId: string
