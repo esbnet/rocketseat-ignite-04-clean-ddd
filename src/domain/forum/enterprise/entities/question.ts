@@ -85,4 +85,19 @@ export class Question extends Entity<IQuestionProps> {
     )
     return question
   }
+
+  static delete(
+    props: Optional<IQuestionProps, 'createdAt' | 'slug'>,
+    id?: UniqueEntityID,
+  ) {
+    const question = new Question(
+      {
+        ...props,
+        slug: props.slug ?? Slug.createFromText(props.title),
+        createdAt: new Date(),
+      },
+      id,
+    )
+    return question
+  }
 }
