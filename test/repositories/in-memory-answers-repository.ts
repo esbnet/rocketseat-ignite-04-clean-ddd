@@ -20,7 +20,13 @@ export class InMemoryAnswersRepository implements AnswersRepository {
     return question
   }
 
-  async delete(question: Answer) {
-    this.items = this.items.filter((q) => q.id !== question.id)
+  async delete(answer: Answer) {
+    this.items = this.items.filter((q) => q.id !== answer.id)
+  }
+
+  async update(answer: Answer) {
+    const itemIndex = this.items.findIndex((item) => item.id === answer.id)
+
+    this.items[itemIndex] = answer
   }
 }
