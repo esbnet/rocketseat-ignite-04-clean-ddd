@@ -10,17 +10,17 @@ export class InMemoryQuestionCommentsRepository
     this.items.push(questionComment)
   }
 
-  // async findById(id: string) {
-  //   const question = this.items.find(
-  //     (question) => question.id.toString() === id,
-  //   )
+  async findById(id: string) {
+    const questionComment = this.items.find(
+      (questionComment) => questionComment.id.toString() === id,
+    )
 
-  //   if (!question) {
-  //     return null
-  //   }
+    if (!questionComment) {
+      return null
+    }
 
-  //   return question
-  // }
+    return questionComment
+  }
 
   // async findManyByQuestionId(questionId: string, { page }: PaginationParams) {
   //   const answers = this.items
@@ -30,9 +30,9 @@ export class InMemoryQuestionCommentsRepository
   //   return answers
   // }
 
-  // async delete(answer: Answer) {
-  //   this.items = this.items.filter((q) => q.id !== answer.id)
-  // }
+  async delete(questionComment: QuestionComment) {
+    this.items = this.items.filter((q) => q.id !== questionComment.id)
+  }
 
   // async update(answer: Answer) {
   //   const itemIndex = this.items.findIndex((item) => item.id === answer.id)
