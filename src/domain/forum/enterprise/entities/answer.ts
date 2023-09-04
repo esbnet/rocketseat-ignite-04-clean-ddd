@@ -1,8 +1,8 @@
-import { Entity } from '../../core/entities/entity'
-import { UniqueEntityID } from '../../core/entities/unique-entity-id'
-import { Optional } from '../../core/types/optional'
+import { Entity } from '@/core/entities/entity'
+import { UniqueEntityID } from '@/core/entities/unique-entity-id'
+import { Optional } from '@/core/types/optional'
 
-interface IAnswerProps {
+export interface IAnswerProps {
   authorId: UniqueEntityID
   questionId: UniqueEntityID
   content: string
@@ -47,7 +47,10 @@ export class Answer extends Entity<IAnswerProps> {
     props: Optional<IAnswerProps, 'createdAt'>,
     id?: UniqueEntityID,
   ) {
-    const answer = new Answer({ ...props, createdAt: new Date() }, id)
+    const answer = new Answer(
+      { ...props, createdAt: props.createdAt ?? new Date() },
+      id,
+    )
     return answer
   }
 }
