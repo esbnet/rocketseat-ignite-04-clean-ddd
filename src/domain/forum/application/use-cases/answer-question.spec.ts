@@ -5,7 +5,7 @@ let inMemoryAnswersRepository: InMemoryAnswersRepository
 let sut: AnswerQuestionUseCase
 
 describe('create a question', () => {
-  beforeAll(async () => {
+  beforeEach(async () => {
     inMemoryAnswersRepository = new InMemoryAnswersRepository()
     sut = new AnswerQuestionUseCase(inMemoryAnswersRepository) // system under test
   })

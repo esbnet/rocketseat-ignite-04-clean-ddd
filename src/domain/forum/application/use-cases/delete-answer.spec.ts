@@ -7,7 +7,7 @@ let inMemoryAnswersRepository: InMemoryAnswersRepository
 let sut: DeleteAnswerUseCase
 
 describe('Delete a answer', () => {
-  beforeAll(async () => {
+  beforeEach(async () => {
     inMemoryAnswersRepository = new InMemoryAnswersRepository()
     sut = new DeleteAnswerUseCase(inMemoryAnswersRepository) // system under test
   })
