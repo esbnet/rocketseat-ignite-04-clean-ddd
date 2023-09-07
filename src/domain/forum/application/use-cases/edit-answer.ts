@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
+import { Either, left, right } from '@/core/either'
 import { Answer } from '../../enterprise/entities/answer'
 import { AnswersRepository } from '../repositories/answers-repository'
+import { ResourceNotAllowedError } from './errors/resource-not-allowed'
+import { ResourceNotFoundError } from './errors/resource-not-found'
 
 interface EditAnswerUseCaseRequest {
   authorId: string
@@ -8,9 +11,12 @@ interface EditAnswerUseCaseRequest {
   content: string
 }
 
-interface EditAnswerUseCaseResponse {
-  answer: Answer
-}
+type EditAnswerUseCaseResponse = Either<
+  ResourceNotFoundError | ResourceNotAllowedError,
+  {
+    answer: Answer
+  }
+>
 
 export class EditAnswerUseCase {
   constructor(private answersRepository: AnswersRepository) {}
@@ -23,17 +29,17 @@ export class EditAnswerUseCase {
     const answer = await this.answersRepository.findById(answerId)
 
     if (!answer) {
-      throw new Error('Answer not found.')
+      return left(new ResourceNotFoundError())
     }
 
     if (authorId !== answer.authorId.toString()) {
-      throw new Error('Not allowed.')
+      return left(new ResourceNotAllowedError())
     }
 
     answer.content = content
 
     await this.answersRepository.update(answer)
 
-    return { answer }
+    return right({ answer })
   }
 }

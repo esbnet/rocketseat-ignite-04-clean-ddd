@@ -22,14 +22,14 @@ describe('Fetch Recent Questions', () => {
       makeQuestion({ createdAt: new Date(2022, 0, 23) }),
     )
 
-    const { questions } = await sut.execute({
+    const result = await sut.execute({
       page: 1,
     })
 
-    expect(questions).toHaveLength(3)
-    expect(questions[0].createdAt).toEqual(new Date(2022, 0, 23))
-    expect(questions[1].createdAt).toEqual(new Date(2022, 0, 20))
-    expect(questions[2].createdAt).toEqual(new Date(2022, 0, 18))
+    expect(result.value?.questions).toHaveLength(3)
+    expect(result.value?.questions[0].createdAt).toEqual(new Date(2022, 0, 23))
+    expect(result.value?.questions[1].createdAt).toEqual(new Date(2022, 0, 20))
+    expect(result.value?.questions[2].createdAt).toEqual(new Date(2022, 0, 18))
   })
 
   it('should be able to fetch paginated recent questions', async () => {
@@ -37,10 +37,10 @@ describe('Fetch Recent Questions', () => {
       await inMemoryQuestionsRepository.create(makeQuestion())
     }
 
-    const { questions } = await sut.execute({
+    const result = await sut.execute({
       page: 2,
     })
 
-    expect(questions).toHaveLength(2)
+    expect(result.value?.questions).toHaveLength(2)
   })
 })
