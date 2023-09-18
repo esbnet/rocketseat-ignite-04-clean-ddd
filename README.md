@@ -26,7 +26,22 @@ Design dirigido à domínio
 
 # Conceitos
 
-Patterns
+- Patterns
+  - Aggregate
+  - WhatchedList
 
-- Aggregate
-- WhatchedList
+## Subdomínios
+
+### Core: O que dá dinheiro
+  - Compra
+  - Catálogo
+  - Pagamento
+  - Entrega
+
+### Supporting - Dá suporte para o core funcionar
+  - Estoque
+  
+### Generic - É necessário, mas não são tão importantes
+  - Notificação ao cliente
+  - Promoção
+  - Chat
