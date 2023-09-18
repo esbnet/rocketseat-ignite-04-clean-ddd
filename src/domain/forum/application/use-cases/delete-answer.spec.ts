@@ -1,10 +1,10 @@
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
+import { ResourceNotAllowedError } from '@/core/errors/errors/resource-not-allowed'
 import { makeAnswer } from 'test/factories/make-answer'
 import { makeAnswerAttachment } from 'test/factories/make-answer-attachments'
 import { InMemoryAnswerAttachmentsRepository } from 'test/repositories/in-memory-answer-attachments-repository'
 import { InMemoryAnswersRepository } from 'test/repositories/in-memory-answers-repository'
 import { DeleteAnswerUseCase } from './delete-answer'
-import { ResourceNotAllowedError } from './errors/resource-not-allowed'
 
 let inMemoryAnswerAttachmentsRepository: InMemoryAnswerAttachmentsRepository
 let inMemoryAnswersRepository: InMemoryAnswersRepository
