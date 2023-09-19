@@ -1,25 +1,20 @@
-// eslint-disable-next-line prettier/prettier
+import { DomainEvents } from '@/core/events/domain-events'
 import { DomainEvent } from '../events/domain-event'
-import { DomainEvents } from '../events/domain-events'
 import { Entity } from './entity'
 
 export abstract class AggregateRoot<Props> extends Entity<Props> {
-  clearEvents() {
-    throw new Error('Method not implemented.')
-  }
-
-  private _domaninEvents: DomainEvent[] = []
-
-  get domaninEvents(): DomainEvent[] {
-    return this._domaninEvents
-  }
+  private _domainEvents: DomainEvent[] = []
 
   get domainEvents(): DomainEvent[] {
-    return this._domaninEvents
+    return this._domainEvents
   }
 
   protected addDomainEvent(domainEvent: DomainEvent): void {
-    this._domaninEvents.push(domainEvent)
+    this._domainEvents.push(domainEvent)
     DomainEvents.markAggregateForDispatch(this)
+  }
+
+  public clearEvents() {
+    this._domainEvents = []
   }
 }
