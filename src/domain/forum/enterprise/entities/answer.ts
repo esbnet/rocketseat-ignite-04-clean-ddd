@@ -1,7 +1,7 @@
 import { AggregateRoot } from '@/core/entities/aggregate-root'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 import { Optional } from '@/core/types/optional'
-import { AnswerCreatedEvent } from '../event/answer-created-event'
+import { AnswerCreatedEvent } from '../events/answer-created-event'
 import { AnswerAttachmentList } from './answer-attachment-list'
 
 export interface IAnswerProps {
@@ -47,7 +47,7 @@ export class Answer extends AggregateRoot<IAnswerProps> {
     return this.props.updatedAt
   }
 
-  get exerpt() {
+  get excerpt() {
     return this.content.substring(0, 120).trimEnd().concat('...')
   }
 
